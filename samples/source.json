@@ -1,0 +1,26 @@
+{
+    "driver": "mysql",
+    "host": "127.0.0.1",
+    "port": 3306,
+    "db_name": "db_1",
+    "tables": [
+        {
+            "table_name": "tb_1",
+            "fields": [
+                "field1", "field2", "field3", "field4"
+            ]
+        },
+        {
+            "table_name": "tb_2",
+            "fields": [
+                "field1", "field2", "field3"
+            ]
+        },
+        {
+            "table_name": "tb_3",
+            "fields": [
+                "field1", "field2"
+            ]
+        }
+    ]   
+}
