@@ -1,20 +1,35 @@
 package main
 
 import (
-	"fmt"
 	"os"
-
-	"github.com/ortizdavid/bulk-migrator/decoders"
+	"github.com/ortizdavid/bulk-migrator/helpers"
+	"github.com/ortizdavid/bulk-migrator/migrators"
 )
 
 func main() {
-	fmt.Println(os.Args)
 	
-	var dbConfig decoders.DatabaseConfig
+	cliArgs := os.Args
+	numArgs := len(cliArgs)
 
-	source := dbConfig.DecodeDbConfig("../samples/source.json")
-	target := dbConfig.DecodeDbConfig("../samples/target.json")
-	
-	source.PrintConfigs()
-	target.PrintConfigs()
+	if numArgs <= 1 {
+		helpers.PrintUsage()
+
+	} else {
+		
+		if numArgs == 2 &&  cliArgs[1] == "-help" {
+			helpers.PrintHelp()
+
+		} else if numArgs == 2 &&  cliArgs[1] == "-examples" {
+			helpers.PrintExamples()
+
+		} else if numArgs == 5 {
+			var migrator migrators.Migrator
+			sourceConfig := cliArgs[2]
+			targetConfig := cliArgs[4]
+			migrator.MigrateDatabase(sourceConfig, targetConfig)
+			
+		} else {
+			helpers.PrintHelp()
+		}
+	}
 }
