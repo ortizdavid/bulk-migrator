@@ -1,11 +1,11 @@
-package loaders
+package migrators
 
 import "github.com/ortizdavid/bulk-migrator/decoders"
 
-type Loader struct {
+type Migrator struct {
 }
 
-func (loader *Loader) LoadDatabase(sourceConfig string, targetConfig string) {
+func (migrator *Migrator) MigrateDatabase(sourceConfig string, targetConfig string) {
 	var dbConfig decoders.DatabaseConfig
 	source := dbConfig.DecodeDbConfig(sourceConfig)
 	target := dbConfig.DecodeDbConfig(targetConfig)
